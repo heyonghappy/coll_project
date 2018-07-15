@@ -19,6 +19,10 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "koa": "^2.5.2",
+    "koa-cors": "0.0.16",
+    "koa-router": "^7.4.0",
+    "@koa/cors": "^2.2.1",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
