@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
-import axios from 'axios'
+import axios from 'axios';
+import setting from '../setting.js'
+
+axios.defaults.baseURL = `http://${setting.host}:${setting.server_port}`;
 
 
 Vue.use(Vuex)
@@ -18,7 +21,7 @@ const mutations = {
 
 const actions = {
     getJson(context) {
-        axios.get('http://127.0.0.1:3000/getJson'
+        axios.get('/getJson'
         ).then(function (res) {
             if (res.status === 200) {
                 context.commit('setJson', res.data);

@@ -19,4 +19,5 @@ router.get('/getJson',async ctx=>{
 app.use(router.routes())
    .use(router.allowedMethods())
 
-app.listen(3000)
+app.listen(3006)
+console.log(`server started at http://127.0.0.1:3006`)
