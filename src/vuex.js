@@ -10,6 +10,7 @@ Vue.use(Vuex)
 
 const state = {
     json: [],
+    currentIndex:0
 };
 
 const mutations = {
