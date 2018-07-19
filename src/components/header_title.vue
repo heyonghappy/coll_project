@@ -1,7 +1,7 @@
 <template>
   <div class="button_wrap">
-    <div v-for="(button , index) in buttons">
-      <headerbotton v-bind:name="button.name" v-bind:num="button.num" v-bind:index="index" v-bind:current="current_index" @click="changeIndex(index)" v-bind:class="{ active:isActive}" />
+    <div v-for="(button, index) in buttons">
+      <headerbotton v-bind:name="button.name" v-bind:num="button.num" v-bind:index="index" @click.native="changeIndex(index)" v-bind:class="[{active:index==current_index},button.id]"/>
     </div>
   </div>
 </template>
@@ -15,31 +15,36 @@ export default {
   data() {
     return {
       current_index: 0,
-      isActive: false,
       buttons: [
         {
           name: "全部任务",
-          num: 40
+          num: 40,
+          id:'with_all'
         },
         {
           name: "按优先级",
-          num: 40
+          num: 40,
+          id:'with_priority'
         },
         {
           name: "自定义看板",
-          num: 40
+          num: 40,
+          id:'with_custom'
         },
         {
           name: "按截止日期",
-          num: 40
+          num: 40,
+          id:'with_end'
         },
         {
           name: "最近完成任务",
-          num: 40
+          num: 40,
+          id:'with_finished'
         },
         {
           name: "按更新日期",
-          num: 40
+          num: 40,
+          id:'with_update'
         }
       ]
     };
@@ -49,10 +54,10 @@ export default {
   },
   methods: {
     changeIndex(index) {
-       this.isActive =current_index==index;
-      console.log(store.state.current_index)
- 
-
+       this.current_index = index;
+       let classNames=event.currentTarget.className;
+       let classNames_index=classNames.indexOf('with')
+       console.log(classNames.substring(classNames_index))
     }
   },
 };
@@ -64,7 +69,8 @@ export default {
   display: flex;
   height: 59px;
   background-color: white;
-  line-height: 59px
+  line-height: 59px;
+  margin:0 20px;
 }
 .title_button {
   font-size: 16px;

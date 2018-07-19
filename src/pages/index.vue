@@ -1,6 +1,7 @@
 <template>
 <div>
 <div>
+  <headeradd/>
 <headertitle/>
 </div>
 </div>
@@ -10,10 +11,12 @@
 
 <script>
 import headertitle from "../components/header_title";
+import headeradd from "../components/header_add";
 export default {
   name: "index",
   components: {
-    headertitle: headertitle
+    headertitle: headertitle,
+    headeradd:headeradd
   }
 };
 </script>
