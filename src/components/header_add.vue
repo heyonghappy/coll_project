@@ -2,10 +2,12 @@
   <div class="header_add">
     <div class="header_title">协作项目</div>
     <div class="add">
-      <div @click="modal1 = true">+</div>
+      <Icon type="plus-circled" @click="modal1 = true"></Icon>
     </div>
     <div>|</div>
-    <div class="filter">筛选</div>
+    <div class="filter">
+      <Icon type="funnel"></Icon>&nbsp;&nbsp;筛选
+      </div>
     <Modal v-model="modal1" title="新建项目" @on-ok="ok" @on-cancel="cancel">
         <p>Content of dialog</p>
         <p>Content of dialog</p>
@@ -16,7 +18,7 @@
 </template>
 
 <script>
-import { Modal } from "iview";
+import { Modal,Icon } from "iview";
 export default {
   name: "headerAdd",
   data() {
@@ -34,7 +36,8 @@ export default {
   },
   computed: {},
   components:{
-    Modal:Modal
+    Modal:Modal,
+    Icon:Icon
   }
 };
 </script>
@@ -57,21 +60,14 @@ export default {
 
 .header_add .add {
   width: 100px;
-}
-.header_add .add div {
-  height: 30px;
-  width: 30px;
-  background-color: #54c7fc;
-  margin: 13px auto;
-  border-radius: 50%;
-  color: white;
-  font-weight: bolder;
-  line-height: 170%;
-  font-size: 18px;
+  font-size: 29px;
+  color:#54c7fc;
   cursor: pointer;
 }
+
 .header_add .filter {
   width: 100px;
   cursor: pointer;
+  font-size: 14px;
 }
 </style>
