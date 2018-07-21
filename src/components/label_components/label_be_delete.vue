@@ -15,7 +15,7 @@ export default {
     name: "label_be_delete",
     data(){
         return{
-            
+
         }
  
     },
@@ -27,6 +27,9 @@ export default {
 </script>
 
 <style>
+.label_be_delete{
+    margin-left:10px;
+}
 .label_be_delete .label_name {
     cursor: pointer;
 }
