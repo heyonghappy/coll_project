@@ -1,9 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
 import axios from 'axios';
-import setting from '../setting.js'
+import setting from '../../setting.js'
 
-axios.defaults.baseURL = `http://${setting.host}:${setting.server_port}`;
+var instance = axios.create({
+    baseURL: `http://${setting.host}:${setting.server_port}`,
+    timeout: 4000
+//    headers: {'X-Custom-Header': 'foobar'}
+})
+
 
 
 Vue.use(Vuex)
@@ -22,7 +27,7 @@ const mutations = {
 
 const actions = {
     getJson(context) {
-        axios.get('/getJson'
+        instance.get('/getJson'
         ).then(function (res) {
             if (res.status === 200) {
                 context.commit('setJson', res.data);
