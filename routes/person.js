@@ -10,4 +10,6 @@ module.exports = class personController {
    * 获取清单
    * @param Object ctx
    */
+
+    
 }
