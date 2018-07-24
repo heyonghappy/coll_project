@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { store } from '../store/vuex'
+import { createStore } from '../store'
 export default {
   name: 'HelloWorld',
   computed: {

@@ -8,7 +8,7 @@
 
 <script>
 import headerbotton from "./header_button";
-import { store } from '../vuex'
+import { createStore } from '../store'
 
 export default {
   name: "header_title",
