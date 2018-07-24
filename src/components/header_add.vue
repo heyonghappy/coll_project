@@ -100,6 +100,7 @@ import { Modal, Icon, Form, FormItem, Card, DatePicker, Row } from "iview";
 import label_to_delete from "./label_components/label_be_delete";
 import header_filter from "./header_filter";
 import type_head_choose_pannel from "./commen_components/type_head_choose_pannel";
+
 export default {
   name: "headerAdd",
   data() {
@@ -139,6 +140,7 @@ export default {
     },
     show_people_choose_typehead(){
       console.log('123132123')
+      return store.dispatch('person/GET_ALL_PERSON_LIST')
 
     }
   },

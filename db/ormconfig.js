@@ -1,4 +1,4 @@
-var settings = require('../settings'),
+var settings = require('../setting'),
     Sequelize = require('sequelize');
 
 var MySequelize = new Sequelize(settings.db, settings.mysql_username, settings.mysql_password, {
