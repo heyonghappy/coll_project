@@ -7,4 +7,4 @@ const person= require('./person')
 const personRouter = new Router({ prefix: '/person' })
 
 exports.personApi = personRouter
-  .post('/getAllpersons',person.getAllPerson )
+  .get('/getAllpersons',person.getAllPerson )

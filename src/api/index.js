@@ -20,6 +20,10 @@ const createAPI = (url, method, config) => {
     })
 }
 
+const u ={
+    createAPI:config=>createAPI()
+}
+
 
 export default {
     createAPI:createAPI
