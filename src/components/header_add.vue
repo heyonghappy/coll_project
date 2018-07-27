@@ -139,8 +139,7 @@ export default {
 
     },
     show_people_choose_typehead(){
-      console.log('123132123')
-      return store.dispatch('person/GET_ALL_PERSON_LIST')
+      return this.$store.dispatch('persons/GET_ALL_PERSON_LIST')
 
     }
   },

@@ -2,6 +2,10 @@ import createAPI from '../../api'
 
 export default {
     namespaced: true,
+    state: {
+        all_person_list:[]
+        
+    },
     mutations: {
         SET_VALUE(state, payload) {
             state.all_person_list = payload
@@ -10,7 +14,8 @@ export default {
     },
     actions: {
         GET_ALL_PERSON_LIST(context) {
-            createApi('/getAllPerson', get)
+            console.log(createAPI)
+            createAPI('/getAllPerson', 'get',{})
                 .then((result) => {
                     if (res.status === 200) {
                         context.commit('SET_VALUE',result.data)

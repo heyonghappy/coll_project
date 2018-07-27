@@ -10,7 +10,9 @@ var instance = axios.create({
 })
 
 const createAPI = (url, method, config) => {
-    config = config || {}
+    config = config || {};
+    console.log(url)
+    console.log(method)
     return instance({
         url,
         method,
@@ -18,6 +20,7 @@ const createAPI = (url, method, config) => {
     })
 }
 
-export {
-    createAPI
+
+export default {
+    createAPI:createAPI
 }

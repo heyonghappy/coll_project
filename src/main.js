@@ -11,12 +11,15 @@ import 'iview/dist/styles/iview.css'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-const store=createStore()
+const store = createStore()
+
 sync(store, router)
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>',
   store: store
 })
