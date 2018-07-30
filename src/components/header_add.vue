@@ -90,7 +90,7 @@
       <headerfilter v-show="filter_show"></headerfilter>
 
     </div>
-    <thchoosepannel v-bind:title="123" v-bind:position="type_head_choose_pannel_position" v-bind:data="type_head_choose_pannel_data"></thchoosepannel>
+    <thchoosepannel v-bind:title="123" v-bind:position="type_head_choose_pannel_position" v-bind:datas="type_head_choose_pannel_data" v-bind:isShow="type_head_choose_pannel_show" ></thchoosepannel>
 
   </div>
 </template>
@@ -106,16 +106,28 @@ export default {
   data() {
     return {
       modal1: false,
-      model11: '',
+      model11: "",
       filter_show: false,
       create_show_more: true,
-      formItem: { textarea: '' },
-      project_types: [{ type_id: '1', name: '实施项目' }, { type_id: '2', name: '销售项目' }, { type_id: '3', name: '其他项目' }],
-      system_labels: [{ label_id: '1', name: '标签标签1' }, { label_id: '2', name: '标签2' }, { label_id: '3', name: '标签3' }],
-      project_members: [{ pm_id: '1', pm_name: '张连' }, { pm_id: '2', pm_name: '小梅' }, { pm_id: '3', pm_name: '李雷' }],
-      type_head_choose_pannel_position: { x: '', y: '' },
-      type_head_choose_pannel_data: {}
-    }
+      formItem: { textarea: "" },
+      project_types: [
+        { type_id: "1", name: "实施项目" },
+        { type_id: "2", name: "销售项目" },
+        { type_id: "3", name: "其他项目" }
+      ],
+      system_labels: [
+        { label_id: "1", name: "标签标签1" },
+        { label_id: "2", name: "标签2" },
+        { label_id: "3", name: "标签3" }
+      ],
+      project_members: [
+        { pm_id: "1", pm_name: "张连" },
+        { pm_id: "2", pm_name: "小梅" },
+        { pm_id: "3", pm_name: "李雷" }
+      ],
+      type_head_choose_pannel_position: { x: "", y: "" },
+      type_head_choose_pannel_show:false
+    };
   },
   methods: {
     ok() {
@@ -127,23 +139,28 @@ export default {
       this.modal1 = false;
     },
     showfilter() {
-      this.filter_show = !this.filter_show
+      this.filter_show = !this.filter_show;
     },
     show_more_info() {
-      this.create_show_more = !this.create_show_more
+      this.create_show_more = !this.create_show_more;
     },
     show_less_info() {
       this.create_show_more = true;
     },
-    show_people_pannel() {
-
-    },
-    show_people_choose_typehead(){
-      return this.$store.dispatch('persons/GET_ALL_PERSON_LIST')
-
+    show_people_pannel() {},
+    show_people_choose_typehead(e) {
+      this.type_head_choose_pannel_position.x = e.pageX ;
+      this.type_head_choose_pannel_position.x = e.pageY ;
+      this.type_head_choose_pannel_show=true;
+      return this.$store.dispatch("persons/GET_ALL_PERSON_LIST");
     }
   },
-  computed: {},
+  computed: {
+    type_head_choose_pannel_data: function() {
+      console.log(this.$store.state.persons.all_person_list)
+      return this.$store.state.persons.all_person_list;
+    }
+  },
   components: {
     Modal: Modal,
     Icon: Icon,
@@ -172,7 +189,7 @@ export default {
 .header_add .header_title {
   flex: 1;
   text-align: left;
-  font-size: 18px
+  font-size: 18px;
 }
 
 .header_add .add {
@@ -198,7 +215,7 @@ export default {
   /*display: flex;*/
 }
 
-.content_frame>li {
+.content_frame > li {
   float: left;
 }
 </style>

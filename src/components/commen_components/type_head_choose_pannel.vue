@@ -1,5 +1,5 @@
 <template>
-    <div v-show="is_show" class="wrap" style='position:fixed' v-bind:style="{'left':position.x,'top':position.y}">
+    <div v-show="is_show" class="wrap" style='position:fixed;z-index:2000' v-bind:style="{'left':left,'top':top}" ref='myWrap'>
         <div class="title_wrap">
             <div style='flex:1'>
                 {{title}}
@@ -12,7 +12,7 @@
         <div>
             <Row>
                 <Select v-model="model1" filterable style="width:180px;padding-right:10px;margin-top:10px;margin-left:10px">
-                    <Option v-for="item in datas" :value="item.id" :key="item.id">{{ item.name }}</Option>
+                    <Option v-for="item in datas" :value="item.id" :key="item.id">{{ item.chinese_name }}</Option>
                 </Select>
             </Row>
         </div>
@@ -24,61 +24,75 @@
     </div>
 </template>
 <script>
-import { Icon, Row, Button, Col } from "iview"
+import { Icon, Row, Button, Col } from "iview";
 export default {
-    name: 'type_head_choose_pannel',
-    props: ['title', 'position', 'datas'],
-    data() {
-        return {
-            model1: '',
-            is_show: true
-        }
+  name: "type_head_choose_pannel",
+  props: ["title", "position", "datas", "isShow"],
+  data() {
+    return {
+      model1: "",
+      wrap_top:0,
+      wrap_left:0
+    };
+  },
+  created() {
+  },
+  mounted() {
+     this.wrap_top =+window.getComputedStyle(this.$refs.myWrap).height.split('p')[0];
+     this.wrap_left= +window.getComputedStyle(this.$refs.myWrap).width.split('p')[0];
+  },
+  methods: {
+    cancel() {
+      this.isShow = false;
     },
-    methods: {
-        cancel() {
-            this.is_show = false;
-
-        },
-        ok() {
-            this.is_show = false;
-            console.log(model1)
-        }
-    },
-    components: {
-        Icon: Icon,
-        Row: Row,
-        Button, Button,
-        Col: Col
-
-
+    ok() {
+      this.isShow = false;
+      console.log(this.model1);
     }
-
-
-}
+  },
+  computed: {
+    is_show: function() {
+      return this.isShow;
+    },
+    top: function() {
+      return this.position.y +this.wrap_top+ "px";
+    },
+    left: function() {
+      return this.position.x +this.wrap_left+ "px";
+    }
+  },
+  components: {
+    Icon: Icon,
+    Row: Row,
+    Button,
+    Button,
+    Col: Col
+  }
+};
 </script>
 <style    scoped>
 .wrap {
-    width: 200px;
-    height: 180px;
-    background-color: white;
-    box-shadow: 2px 2px 8px 2px #999999;
-    color: #666;
+  width: 200px;
+  height: 180px;
+  background-color: white;
+  box-shadow: 2px 2px 8px 2px #999999;
+  color: #666;
 }
 
 .title_wrap {
-    background-color: #f8f8f8;
-    height: 30px;
-    line-height: 30px;
-    display: flex;
-    font-size: 15px;
+  background-color: #f8f8f8;
+  height: 30px;
+  line-height: 30px;
+  display: flex;
+  font-size: 15px;
 }
 
 .close {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .close:hover {
-    color: #54c7fc
+  color: #54c7fc;
 }
 </style>
  

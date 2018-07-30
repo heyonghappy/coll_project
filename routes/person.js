@@ -5,7 +5,7 @@ const _ = require('lodash'),
     mySequelize = require('../db/ormconfig.js')
 
 
-const Person = require('../db_models/person')
+const {People} = require('../db_models/person')
 
 module.exports = class personController {
 
@@ -15,11 +15,11 @@ module.exports = class personController {
    */
 
     static async getAllPerson(ctx) {
-        let persons = await Person.findAll({
-            attributes: ['chinese_name', 'english_name']
-        });
-
-        console.log(persons)
+     let peoples=  await People.findAll({
+            attributes: ['id','chinese_name', 'english_name'],
+            raw: true
+        })
+        ctx.body=peoples
 
     }
 
