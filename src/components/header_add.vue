@@ -17,7 +17,7 @@
           </Form>
           <div style='margin-top:20px;display:flex'>
             <Card style="flex:1;height:100px">
-              <div style='cursor: pointer;' @click='show_people_choose_typehead'>
+              <div style='cursor: pointer;' @click='show_people_choose_typehead' v-on:show-typehead="type_head_choose_pannel_show=$event">
                 <p style='margin-bottom:10px'>我负责的</p>
                 <img src="http://www.soideas.cn/uploads/allimg/141214/3-www.soideas.cn141214154540.jpg" alt="" style='width=30px;height:30px;border-radius:50%;vertical-align: middle;'>
                 <span>郑翔</span>

@@ -31,34 +31,45 @@ export default {
   data() {
     return {
       model1: "",
-      wrap_top:0,
-      wrap_left:0
+      wrap_top: 0,
+      wrap_left: 0,
+      is_show:this.isShow
     };
   },
-  created() {
-  },
+  created() {},
   mounted() {
-     this.wrap_top =+window.getComputedStyle(this.$refs.myWrap).height.split('p')[0];
-     this.wrap_left= +window.getComputedStyle(this.$refs.myWrap).width.split('p')[0];
+    this.wrap_top = +window
+      .getComputedStyle(this.$refs.myWrap)
+      .height.split("p")[0];
+    this.wrap_left = +window
+      .getComputedStyle(this.$refs.myWrap)
+      .width.split("p")[0];
   },
   methods: {
     cancel() {
-      this.isShow = false;
+      this.is_show = false;
     },
     ok() {
-      this.isShow = false;
+      this.is_show = false;
       console.log(this.model1);
     }
   },
   computed: {
-    is_show: function() {
-      return this.isShow;
-    },
     top: function() {
-      return this.position.y +this.wrap_top+ "px";
+      return this.position.y + this.wrap_top + "px";
     },
     left: function() {
-      return this.position.x +this.wrap_left+ "px";
+      return this.position.x + this.wrap_left + "px";
+    }
+  },
+  watch: {
+    isShow(val) {
+      this.is_show=val
+    },
+    is_show(val){
+        console.log('watch==',val)
+        this.$emit("show-typehead",val)
+
     }
   },
   components: {
