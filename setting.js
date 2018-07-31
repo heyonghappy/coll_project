@@ -6,7 +6,7 @@ module.exports = {
     client_port: '8080',
     db: "coll_project",
     mysql_username: 'root',
-    mysql_password: '123',
+    mysql_password: '123456',
     mysql_host: '3306',
     
     

@@ -66,8 +66,7 @@ export default {
     isShow(val) {
       this.is_show=val
     },
-    is_show(val){
-        console.log('watch==',val)
+    is_show(val){//主要是将是否隐藏传递出去
         this.$emit("show-typehead",val)
 
     }

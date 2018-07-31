@@ -17,7 +17,7 @@
           </Form>
           <div style='margin-top:20px;display:flex'>
             <Card style="flex:1;height:100px">
-              <div style='cursor: pointer;' @click='show_people_choose_typehead' v-on:show-typehead="type_head_choose_pannel_show=$event">
+              <div style='cursor: pointer;' @click='show_people_choose_typehead' >
                 <p style='margin-bottom:10px'>我负责的</p>
                 <img src="http://www.soideas.cn/uploads/allimg/141214/3-www.soideas.cn141214154540.jpg" alt="" style='width=30px;height:30px;border-radius:50%;vertical-align: middle;'>
                 <span>郑翔</span>
@@ -90,7 +90,7 @@
       <headerfilter v-show="filter_show"></headerfilter>
 
     </div>
-    <thchoosepannel v-bind:title="123" v-bind:position="type_head_choose_pannel_position" v-bind:datas="type_head_choose_pannel_data" v-bind:isShow="type_head_choose_pannel_show" ></thchoosepannel>
+    <thchoosepannel v-bind:title="123" v-bind:position="type_head_choose_pannel_position" v-bind:datas="type_head_choose_pannel_data" v-bind:isShow="type_head_choose_pannel_show" v-on:show-typehead="type_head_choose_pannel_change" ></thchoosepannel>
 
   </div>
 </template>
@@ -126,7 +126,7 @@ export default {
         { pm_id: "3", pm_name: "李雷" }
       ],
       type_head_choose_pannel_position: { x: "", y: "" },
-      type_head_choose_pannel_show:false
+      type_head_choose_pannel_show: false
     };
   },
   methods: {
@@ -149,15 +149,19 @@ export default {
     },
     show_people_pannel() {},
     show_people_choose_typehead(e) {
-      this.type_head_choose_pannel_position.x = e.pageX ;
-      this.type_head_choose_pannel_position.x = e.pageY ;
-      this.type_head_choose_pannel_show=true;
-      return this.$store.dispatch("persons/GET_ALL_PERSON_LIST");
+      this.type_head_choose_pannel_position.x = e.pageX;
+      this.type_head_choose_pannel_position.x = e.pageY;
+      this.type_head_choose_pannel_show = true;
+      if (this.$store.state.persons.all_person_list.length == 0) {
+        return this.$store.dispatch("persons/GET_ALL_PERSON_LIST");
+      }
+    },
+    type_head_choose_pannel_change(val) {
+      this.type_head_choose_pannel_show = val;
     }
   },
   computed: {
     type_head_choose_pannel_data: function() {
-      console.log(this.$store.state.persons.all_person_list)
       return this.$store.state.persons.all_person_list;
     }
   },
