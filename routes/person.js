@@ -5,7 +5,7 @@ const _ = require('lodash'),
     mySequelize = require('../db/ormconfig.js')
 
 
-const {People} = require('../db_models/people')
+const People = require('../db_models/people')
 
 module.exports = class personController {
 
