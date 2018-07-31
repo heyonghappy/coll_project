@@ -33,7 +33,7 @@ export default {
       model1: "",
       wrap_top: 0,
       wrap_left: 0,
-      is_show:this.isShow
+      is_show: this.isShow
     };
   },
   created() {},
@@ -51,7 +51,7 @@ export default {
     },
     ok() {
       this.is_show = false;
-      console.log(this.model1);
+      this.$emit("get-id", this.model1);
     }
   },
   computed: {
@@ -64,11 +64,11 @@ export default {
   },
   watch: {
     isShow(val) {
-      this.is_show=val
+      this.is_show = val;
     },
-    is_show(val){//主要是将是否隐藏传递出去
-        this.$emit("show-typehead",val)
-
+    is_show(val) {
+      //主要是将是否隐藏传递出去
+      this.$emit("show-typehead", val);
     }
   },
   components: {

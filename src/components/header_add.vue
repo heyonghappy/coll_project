@@ -19,8 +19,8 @@
             <Card style="flex:1;height:100px">
               <div style='cursor: pointer;' @click='show_people_choose_typehead' >
                 <p style='margin-bottom:10px'>我负责的</p>
-                <img src="http://www.soideas.cn/uploads/allimg/141214/3-www.soideas.cn141214154540.jpg" alt="" style='width=30px;height:30px;border-radius:50%;vertical-align: middle;'>
-                <span>郑翔</span>
+                <img :src="pm.Avatar" alt="" style='width=30px;height:30px;border-radius:50%;vertical-align: middle;'>
+                <span>{{pm.chinese_name}}</span>
               </div>
 
             </Card>
@@ -36,7 +36,7 @@
           <div style='color: #54c7fc; margin:10px 0;cursor:pointer' @click="show_more_info" v-show="create_show_more">
             更多信息
           </div>
-          <div v-show="!create_show_more" @click="show_less_info" style='margin-top:10px'>
+          <div v-show="!create_show_more"  style='margin-top:10px'>
             <div>
               <span style=' float: left;  margin-right: 10px; margin-top: 5px;'>项目类型</span>
               <Row>
@@ -74,7 +74,7 @@
               </ul>
             </div>
             <div style='text-align:right'>
-              <Button type='info' style='margin-top:10px;'>收起</Button>
+              <Button type='info' style='margin-top:10px;' @click="show_less_info">收起</Button>
             </div>
 
           </div>
@@ -90,7 +90,7 @@
       <headerfilter v-show="filter_show"></headerfilter>
 
     </div>
-    <thchoosepannel v-bind:title="123" v-bind:position="type_head_choose_pannel_position" v-bind:datas="type_head_choose_pannel_data" v-bind:isShow="type_head_choose_pannel_show" v-on:show-typehead="type_head_choose_pannel_change" ></thchoosepannel>
+    <thchoosepannel v-bind:title="123" v-bind:position="type_head_choose_pannel_position" v-bind:datas="type_head_choose_pannel_data" v-bind:isShow="type_head_choose_pannel_show" v-on:show-typehead="type_head_choose_pannel_change" v-on:get-id="get_datas_id" ></thchoosepannel>
 
   </div>
 </template>
@@ -126,7 +126,13 @@ export default {
         { pm_id: "3", pm_name: "李雷" }
       ],
       type_head_choose_pannel_position: { x: "", y: "" },
-      type_head_choose_pannel_show: false
+      type_head_choose_pannel_show: false,
+      pm:{
+        id:'5',
+        chinese_name:'郑翔',
+        english_name:'xiang Zheng',
+        Avatar:'http://www.soideas.cn/uploads/allimg/141214/3-www.soideas.cn141214154540.jpg'
+      }
     };
   },
   methods: {
@@ -144,7 +150,8 @@ export default {
     show_more_info() {
       this.create_show_more = !this.create_show_more;
     },
-    show_less_info() {
+    show_less_info(e) {
+
       this.create_show_more = true;
     },
     show_people_pannel() {},
@@ -158,6 +165,12 @@ export default {
     },
     type_head_choose_pannel_change(val) {
       this.type_head_choose_pannel_show = val;
+    },
+    get_datas_id(val){
+      let projectMgr = this.$store.state.persons.all_person_list.filter(function(item){
+        return item.id==val
+      })
+      this.pm=projectMgr[0]
     }
   },
   computed: {
