@@ -23,6 +23,7 @@
 </template>
 <script>
 import { Input, Icon, Button } from "iview";
+import bcrypt from "bcryptjs";
 
 export default {
   name: "login",
@@ -31,9 +32,18 @@ export default {
     Input: Input,
     Button: Button
   },
-  data: {
-    login_name: "",
-    password: ""
+  data() {
+    return {
+      login_name: "",
+      password: ""
+    };
+  },
+  methods: {
+    login() {
+      let salt = bcrypt.genSaltSync(12); 
+      let password = bcrypt.hashSync(this.password, salt);
+
+    }
   }
 };
 </script>
@@ -44,7 +54,7 @@ export default {
   height: 200px;
   border-radius: 5px;
   background-color: rgba(84, 199, 252, 0.4);
-  margin: 20px auto;
+  margin: 15% auto;
   padding: 20px;
 }
 </style>

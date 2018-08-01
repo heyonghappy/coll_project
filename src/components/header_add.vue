@@ -28,7 +28,7 @@
               <div>
                 <p>截止时间</p>
                 <div style='margin-top:10px;'>
-                  <DatePicker type="date" placeholder="Select date" style="width: 200px"></DatePicker>
+                  <DatePicker type="date" placeholder="Select date" style="width: 200px;position:relative;z-index:1050"></DatePicker>
                 </div>
               </div>
             </Card>
@@ -39,7 +39,7 @@
           <div v-show="!create_show_more"  style='margin-top:10px'>
             <div>
               <span style=' float: left;  margin-right: 10px; margin-top: 5px;'>项目类型</span>
-              <Row>
+              <Row style='position:relative;z-index:1002'>
                 <Col span="12" style="padding-right:10px">
                 <Select v-model="model11" filterable>
                   <Option v-for="item in project_types" :value="item.type_id" :key="item.type_id">{{ item.name }}</Option>
