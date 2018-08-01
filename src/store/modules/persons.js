@@ -21,6 +21,12 @@ export default {
 
     },
     actions: {
+        REGISTE(){
+
+        },
+        LOGIN(){
+
+        },
         GET_ALL_PERSON_LIST(context) {
             axiosInstance({
                 url: '/person/getAllPersons',

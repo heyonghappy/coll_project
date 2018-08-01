@@ -15,10 +15,27 @@ module.exports = class personController {
    */
 
     static async getAllPerson(ctx) {
-     let peoples=  await People.findAll({
-            attributes: ['id','chinese_name', 'english_name','Avatar'],
+        let peoples = await People.findAll({
+            attributes: ['id', 'chinese_name', 'english_name', 'Avatar'],
             raw: true
         })
-        ctx.body=peoples
+        ctx.body = peoples
+    }
+
+    static async register(ctx) {
+        console.log('register===',ctx.req.login_name)
+        // let peoples = await People.findAll({
+        //     attributes: ['id', 'chinese_name', 'english_name', 'Avatar'],
+        //     raw: true
+        // })
+        // ctx.body = peoples
+    }
+    static async login(ctx) {
+        console.log('login===',ctx.req.login_name)
+        // let peoples = await People.findAll({
+        //     attributes: ['id', 'chinese_name', 'english_name', 'Avatar'],
+        //     raw: true
+        // })
+        // ctx.body = peoples
     }
 }
