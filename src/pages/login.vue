@@ -83,8 +83,10 @@ export default {
       axiosInstance({
         url: "/person/login",
         method: "post",
-        login_name: this.login_name,
-        password: password
+        data: {
+          login_name: this.login_name,
+          password: password
+        }
       })
         .then(result => {
           if (result.status == 200) {
@@ -132,8 +134,10 @@ export default {
       axiosInstance({
         url: "/person/register",
         method: "post",
-        login_name: this.login_name,
-        password: password
+        data: {
+          login_name: this.login_name,
+          password: password
+        }
       })
         .then(result => {
           if (result.status == 200) {

@@ -5,5 +5,9 @@
     "db": "coll_project",
     "mysql_username": "root",
     "mysql_password": "123",
-    "mysql_host": "3306"
+    "mysql_host": "3306",
+    "jwt": {
+        "expire": "14 days",
+        "secret": "shared-secret"
+      }
 }

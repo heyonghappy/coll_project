@@ -23,7 +23,7 @@ module.exports = class personController {
     }
 
     static async register(ctx) {
-        console.log('register===',ctx.req.login_name)
+        console.log('register===',ctx.request.body)
         // let peoples = await People.findAll({
         //     attributes: ['id', 'chinese_name', 'english_name', 'Avatar'],
         //     raw: true
@@ -31,7 +31,7 @@ module.exports = class personController {
         // ctx.body = peoples
     }
     static async login(ctx) {
-        console.log('login===',ctx.req.login_name)
+        console.log('login===',ctx.request.body)
         // let peoples = await People.findAll({
         //     attributes: ['id', 'chinese_name', 'english_name', 'Avatar'],
         //     raw: true
