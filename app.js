@@ -12,6 +12,7 @@ const pathToRegexp = require('path-to-regexp')
 const fs = require('fs')
 const router = require('./routes')
 const jwtSecret = config.get('jwt.secret')
+const utils = require('./utils')
 
 
 const app = new koa()
@@ -37,6 +38,7 @@ app
         }
         return true
     }))
+    .use(utils.util)
     .use(koaBody({ multipart: true }))
     .use(router.personApi.routes())
     .use(router.personApi.allowedMethods())

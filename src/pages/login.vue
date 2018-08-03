@@ -3,11 +3,11 @@
         <Tabs value="name1">
         <TabPane label="登录" name="name1">
             <div style="margin-top: 6px">
-                <Input v-model="login_name" placeholder="用户名" size="large" style="width: auto" prefix="ios-contact"> 
+                <Input v-model.trim="login_name" placeholder="用户名" size="large" style="width: auto" prefix="ios-contact"> 
                 </Input>
                 <div style='margin-top:10px;'>
                 </div>
-                <Input v-model="password"  placeholder="密码" size="large" style="width: auto" prefix="ios-search" type='password'>
+                <Input v-model.trim="password"  placeholder="密码" size="large" style="width: auto" prefix="ios-search" type='password'>
                 </Input>
             </div>
     <div style='margin-top:10px;text-align:right;margin-right:40px'>
@@ -140,8 +140,9 @@ export default {
         }
       })
         .then(result => {
-          if (result.status == 200) {
-          }
+ 
+              console.log(result)
+        
         })
         .catch(error => {
           console.log(error);
