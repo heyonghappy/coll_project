@@ -9,5 +9,6 @@
     "jwt": {
         "expire": "14 days",
         "secret": "shared-secret"
-      }
+      },
+    "cookie_namespace":"coll_project_token"
 }

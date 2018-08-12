@@ -47,6 +47,8 @@
 import { Input, Icon, Button, Tabs, TabPane, Alert } from "iview";
 import bcrypt from "bcryptjs";
 import { axiosInstance } from "../api";
+import Cookies from 'universal-cookie';
+import config from 'config'
 
 export default {
   name: "login",
@@ -69,6 +71,7 @@ export default {
   },
   methods: {
     login() {
+        const cookies = new Cookies();
       if (!this.login_name || !this.password) {
         this.error_info = "用户名密码不能为空";
         this.isError = true;
@@ -78,8 +81,9 @@ export default {
         }, 2000);
         return;
       }
-      let salt = bcrypt.genSaltSync(12);
-      let password = bcrypt.hashSync(this.password, salt);
+ 
+      let password = bcrypt.hashSync(this.password,8);
+ 
       axiosInstance({
         url: "/person/login",
         method: "post",
@@ -89,8 +93,25 @@ export default {
         }
       })
         .then(result => {
-          if (result.status == 200) {
+          const body= result.data;
+          if(body.success){
+              this.$ls.set('user',body.data)
+              this.$ls.set('laste-user',this.login_name)
+
+              cookies.set(
+                 config.cookie_namespace,
+                 body.data.token,
+                 {
+                     path:'/',
+                     maxAge:60*60*24*31
+                 } 
+              )
+              this.$router.push('/index')
+
+          }else{
+              alert(body.data)
           }
+    
         })
         .catch(error => {
           console.log(error);
@@ -129,8 +150,9 @@ export default {
         }, 2000);
         return;
       }
-      let salt = bcrypt.genSaltSync(12);
-      let password = bcrypt.hashSync(this.password, salt);
+ 
+      let password = bcrypt.hashSync(this.password,8);
+ 
       axiosInstance({
         url: "/person/register",
         method: "post",
