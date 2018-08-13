@@ -14,7 +14,7 @@ const router = require('./routes')
 const jwtSecret = config.get('jwt.secret')
 const utils = require('./utils')
 
-
+console.log(jwtSecret)
 const app = new koa()
 // const router = new Router()
 onerror(app)
@@ -29,14 +29,8 @@ app.use(cors({ credentials: true, maxAge: 2592000 }))
 // })
 
 app
-    .use(koaJwt({ secret: jwtSecret }).unless((ctx) => {
-        if (/^\/person/.test(ctx.path)) {
-            return pathToRegexp([
-                '/person/login',
-                '/person/register'
-            ]).test(ctx.path)
-        }
-        return true
+    .use(koaJwt({ secret: jwtSecret }).unless( {
+        path: [/^\/api\/login/] //数组中的路径不需要通过jwt验证   
     }))
     .use(utils.util)
     .use(koaBody({ multipart: true }))
