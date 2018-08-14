@@ -14,7 +14,6 @@ const router = require('./routes')
 const jwtSecret = config.get('jwt.secret')
 const utils = require('./utils')
 
-console.log(jwtSecret)
 const app = new koa()
 // const router = new Router()
 onerror(app)
