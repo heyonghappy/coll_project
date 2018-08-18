@@ -10,7 +10,6 @@ const _ = require('lodash'),
 const jwtSecret = config.get('jwt.secret'),
     jwtExpire = config.get('jwt.expire');
 
-
 const People = require('../db_models/people')
 
 module.exports = class personController {
@@ -41,7 +40,6 @@ module.exports = class personController {
             where: { login_name: login_name },
             raw: true
         })
-        console.log("peoples", peoples)
         if (peoples) {
             return ctx.body = ctx.util.refail(null, 10001, 'user already exist')
         }
@@ -72,6 +70,7 @@ module.exports = class personController {
                 return ctx.body = ctx.util.refail(null, 10001, 'wrong password')
             } else {
                 people.token = jwt.sign({ id: people.id }, jwtSecret, { expiresIn: jwtExpire })
+
                 return ctx.body = ctx.util.resuccess(people)
             }
         } else {

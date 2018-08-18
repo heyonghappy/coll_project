@@ -7,7 +7,7 @@
     "mysql_password": "123",
     "mysql_host": "3306",
     "jwt": {
-        "expire": "14 days",
+        "expire": "24h",
         "secret": "shared-secret"
       },
     "cookie_namespace":"coll_project_token"

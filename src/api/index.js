@@ -3,7 +3,7 @@ import axios from 'axios';
 import setting from '../../setting.js'
 import Cookies from 'universal-cookie'
 import iView from 'iview'
-import conf from 'config'
+// import conf from 'config'
 
 const cookies = new Cookies();
 var router;
@@ -55,8 +55,8 @@ var loading = {
 axiosInstance.interceptors.request.use(config => {
     let token;
     loading.start()
-    token = cookies.get(conf.cookie_namespace)
-    config.headers.Authoriation = `Bearer ${token}`;
+    token = cookies.get(setting.cookie_namespace)
+    config.headers.authorization = `Bearer ${token}`;
     return config
 
 }, error => {

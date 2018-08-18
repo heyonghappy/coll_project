@@ -48,7 +48,7 @@ import { Input, Icon, Button, Tabs, TabPane, Alert } from "iview";
 import bcrypt from "bcryptjs";
 import { axiosInstance } from "../api";
 import Cookies from 'universal-cookie';
-import config from 'config'
+// import config from 'config'
 
 export default {
   name: "login",
@@ -71,6 +71,7 @@ export default {
   },
   methods: {
     login() {
+      
         const cookies = new Cookies();
       if (!this.login_name || !this.password) {
         this.error_info = "用户名密码不能为空";
@@ -99,7 +100,7 @@ export default {
               this.$ls.set('laste-user',this.login_name)
 
               cookies.set(
-                 config.cookie_namespace,
+                 'coll_project_token',
                  body.data.token,
                  {
                      path:'/',
@@ -164,6 +165,7 @@ export default {
         .then(result => {
  
               console.log(result)
+              this.login()
         
         })
         .catch(error => {

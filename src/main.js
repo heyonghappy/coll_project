@@ -10,10 +10,10 @@ import { createStore } from './store'
 import { initAPI } from './api'
 import 'iview/dist/styles/iview.css'
 import Cookies from 'universal-cookie'
-import config from 'config'
+import setting from '../setting.js'
 
 Vue.config.productionTip = false
-Vue.use(VueLocalStorage, { namespace: 'coll_project' })
+Vue.use(VueLocalStorage, { namespace: '' })
 
 Vue.mixin({
   data() {
@@ -29,7 +29,7 @@ Vue.mixin({
 //前置守卫
 const cookies = new Cookies();
 router.beforeEach((to, from, next) => {
-  const token = cookies.get(config.cookie_namespace)
+  const token = cookies.get(setting.cookie_namespace)
   const userid = localStorage.getItem("userid")
 
   if(to.path=='/'){

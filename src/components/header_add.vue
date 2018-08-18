@@ -19,7 +19,7 @@
             <Card style="flex:1;height:100px">
               <div style='cursor: pointer;' @click='show_people_choose_typehead' >
                 <p style='margin-bottom:10px'>我负责的</p>
-                <img :src="pm.Avatar" alt="" style='width=30px;height:30px;border-radius:50%;vertical-align: middle;'>
+                <img :src="pm.Avatar?pm.Avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3198678185,878755003&fm=27&gp=0.jpg'" alt="" style='width=30px;height:30px;border-radius:50%;vertical-align: middle;'>
                 <span>{{pm.chinese_name}}</span>
               </div>
 
@@ -56,7 +56,7 @@
                   <labeltodelete v-bind:name="label.name" v-bind:id="label.id"></labeltodelete>
                 </li>
 
-                <li style='line-height: 28px; color: #54c7fc;'>
+                <li style='line-height: 28px; color: #54c7fc;margin-left:10px; cursor: pointer;'>
                   <Icon type="plus-circled"></Icon> 添加
                 </li>
               </ul>
@@ -111,29 +111,22 @@ export default {
       create_show_more: true,
       formItem: { textarea: "" },
       project_types: [
-        { type_id: "1", name: "实施项目" },
-        { type_id: "2", name: "销售项目" },
-        { type_id: "3", name: "其他项目" }
+        // { type_id: "1", name: "实施项目" }
       ],
       system_labels: [
-        { label_id: "1", name: "标签标签1" },
-        { label_id: "2", name: "标签2" },
-        { label_id: "3", name: "标签3" }
+        // { label_id: "1", name: "标签标签1" }
       ],
       project_members: [
-        { pm_id: "1", pm_name: "张连" },
-        { pm_id: "2", pm_name: "小梅" },
-        { pm_id: "3", pm_name: "李雷" }
+        // { pm_id: "1", pm_name: "张连" },
       ],
       type_head_choose_pannel_position: { x: "", y: "" },
       type_head_choose_pannel_show: false,
-      pm:{
-        id:'5',
-        chinese_name:'郑翔',
-        english_name:'xiang Zheng',
-        Avatar:'http://www.soideas.cn/uploads/allimg/141214/3-www.soideas.cn141214154540.jpg'
-      }
+      pm: this.$ls.get("user")
     };
+  },
+  mounted() {
+
+    
   },
   methods: {
     ok() {
@@ -151,7 +144,6 @@ export default {
       this.create_show_more = !this.create_show_more;
     },
     show_less_info(e) {
-
       this.create_show_more = true;
     },
     show_people_pannel() {},
@@ -166,11 +158,13 @@ export default {
     type_head_choose_pannel_change(val) {
       this.type_head_choose_pannel_show = val;
     },
-    get_datas_id(val){
-      let projectMgr = this.$store.state.persons.all_person_list.filter(function(item){
-        return item.id==val
-      })
-      this.pm=projectMgr[0]
+    get_datas_id(val) {
+      let projectMgr = this.$store.state.persons.all_person_list.filter(
+        function(item) {
+          return item.id == val;
+        }
+      );
+      this.pm = projectMgr[0];
     }
   },
   computed: {

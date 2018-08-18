@@ -8,6 +8,7 @@ module.exports = {
     mysql_username: 'root',
     mysql_password: '123',
     mysql_host: '3306',
+    cookie_namespace:'coll_project_token'
     
     
 };

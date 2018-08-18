@@ -6,17 +6,19 @@
 </template>
 <script>
 import Cookies from "universal-cookie";
-import config from "config";
+import setting from '../../setting.js'
 
 export default {
   beforeMount() {
+       console.log('logout1')
     this.logOut();
   },
   methods: {
     logOut() {
+        console.log('logout2')
       const cookies = new Cookies();
       this.$ls.remove("user");
-      cookies.remove(config.cookie_namespace);
+      cookies.remove(setting.cookie_namespace);
       this.$router.push("/login");
     }
   }

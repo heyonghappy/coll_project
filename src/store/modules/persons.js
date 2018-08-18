@@ -33,7 +33,8 @@ export default {
                 method: 'get'
             }).then((result) => {
                 if (result.status == 200) {
-                    context.commit('SET_VALUE', result.data)
+                    console.log(result.data)
+                    context.commit('SET_VALUE', result.data.data)
                 }
 
             }).catch((error) => {

@@ -11,14 +11,14 @@ const pathToRegexp = require('path-to-regexp')
 
 const fs = require('fs')
 const router = require('./routes')
-const jwtSecret = config.get('jwt.secret')
+const secret = config.get('jwt.secret')
 const utils = require('./utils')
+
 
 const app = new koa()
 // const router = new Router()
 onerror(app)
 validate(app)
-
 app.use(cors({ credentials: true, maxAge: 2592000 }))
 
 // router.get('/getJson',async ctx=>{
@@ -28,8 +28,9 @@ app.use(cors({ credentials: true, maxAge: 2592000 }))
 // })
 
 app
-    .use(koaJwt({ secret: jwtSecret }).unless( {
-        path: [/^\/api\/login/] //数组中的路径不需要通过jwt验证   
+    .use(koaJwt({ secret }).unless( {
+        path: [/^\/person\/login/,
+            /^\/person\/register/] //数组中的路径不需要通过jwt验证   
     }))
     .use(utils.util)
     .use(koaBody({ multipart: true }))
