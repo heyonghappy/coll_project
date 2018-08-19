@@ -4,8 +4,9 @@ const _ = require('lodash'),
     Sequelize = require('sequelize'),
     mySequelize = require('../db/ormconfig.js'),
     jwt = require('jsonwebtoken'),
-    config=require('config'),
-    bcrypt=require('bcryptjs');
+    config = require('config'),
+    bcrypt = require('bcryptjs');
+
 
 const jwtSecret = config.get('jwt.secret'),
     jwtExpire = config.get('jwt.expire');
@@ -66,10 +67,10 @@ module.exports = class personController {
             raw: true
         })
         if (people) {
-            if ( bcrypt.compareSync(people.password,password)) {
+            if (bcrypt.compareSync(people.password, password)) {
                 return ctx.body = ctx.util.refail(null, 10001, 'wrong password')
             } else {
-                people.token = jwt.sign({ id: people.id }, jwtSecret, { expiresIn: jwtExpire })
+                people.token = jwt.sign(people, jwtSecret, { expiresIn: jwtExpire })
 
                 return ctx.body = ctx.util.resuccess(people)
             }

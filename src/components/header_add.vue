@@ -42,10 +42,9 @@
               <Row style='position:relative;z-index:1002'>
                 <Col span="12" style="padding-right:10px">
                 <Select v-model="model11" filterable>
-                  <Option v-for="item in project_types" :value="item.type_id" :key="item.type_id">{{ item.name }}</Option>
+                  <Option v-for="item in project_types" :value="item.id" :key="item.id">{{ item.name }}</Option>
                 </Select>
                 </Col>
-
               </Row>
               </Form>
             </div>
@@ -110,9 +109,6 @@ export default {
       filter_show: false,
       create_show_more: true,
       formItem: { textarea: "" },
-      project_types: [
-        // { type_id: "1", name: "实施项目" }
-      ],
       system_labels: [
         // { label_id: "1", name: "标签标签1" }
       ],
@@ -124,10 +120,7 @@ export default {
       pm: this.$ls.get("user")
     };
   },
-  mounted() {
-
-    
-  },
+  mounted() {},
   methods: {
     ok() {
       this.$Message.info("Clicked ok");
@@ -170,6 +163,16 @@ export default {
   computed: {
     type_head_choose_pannel_data: function() {
       return this.$store.state.persons.all_person_list;
+    },
+    project_types: function() {
+      return this.$store.state.project_accessory.project_types;
+    }
+  },
+  watch: {
+    modal1: function(curVal, oldVal) {
+      if (curVal) {
+        return this.$store.dispatch("project_accessory/GET_PROJECT_TYPES");
+      }
     }
   },
   components: {
